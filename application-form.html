@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đơn Xin Nhận Tiền Miễn Giảm Học Phí - Đại học Cửu Long</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 794px; /* ~210mm, phù hợp khổ A4 */
+            margin: 1cm auto;
+            padding: 15mm; /* Căn lề trái/phải rộng */
+        }
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .form-container {
+                margin: 0;
+                padding: 15mm;
+                border: none;
+                box-shadow: none;
+            }
+            .no-print {
+                display: none !important; /* Ẩn nút khi in */
+            }
+            @page {
+                size: A4;
+                margin: 10mm;
+            }
+        }
+        .highlight {
+            background-color: #fef08a;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="form-container bg-white rounded-lg shadow-lg">
+        <h1 class="text-xl sm:text-2xl font-bold text-center text-gray-800">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</h1>
+        <p class="text-center text-gray-600 text-base">Độc lập - Tự do - Hạnh phúc</p>
+        <hr class="my-3 border-gray-300">
+        <h2 class="text-lg sm:text-xl font-semibold text-center text-blue-700">ĐƠN XIN NHẬN TIỀN MIỄN GIẢM HỌC PHÍ</h2>
+        <p class="text-center text-gray-600 text-sm">Dành cho tân sinh viên hệ Đại học chính quy năm 2025, khóa 26</p>
+        <div class="recipient mt-4">
+            <p class="text-sm sm:text-base text-center"><strong>Kính gửi:</strong></p>
+            <div class="flex justify-end w-1/2 ml-auto">
+                <div class="inline-block text-center space-y-1">
+                    <p class="text-sm sm:text-base">· Ban Giám hiệu Trường Đại học Cửu Long;</p>
+                    <p class="text-sm sm:text-base">· Trung tâm Tuyển sinh – Truyền thông;</p>
+                    <p class="text-sm sm:text-base">· Phòng Kế hoạch – Tài chính.</p>
+                </div>
+            </div>
+        </div>
+        <div class="personal-info mt-4 space-y-1">
+            <div class="flex flex-col sm:flex-row justify-between gap-2">
+                <p class="text-sm sm:text-base">Tôi tên: <strong id="fullName" class="text-gray-800">Chưa nhập</strong></p>
+                <p class="text-sm sm:text-base">Điện thoại liên lạc: <strong id="phone" class="text-gray-800">Chưa nhập</strong></p>
+            </div>
+            <div class="flex flex-col sm:flex-row justify-between gap-2">
+                <p class="text-sm sm:text-base">Ngày sinh: <strong id="dob" class="text-gray-800">Chưa nhập</strong></p>
+                <p class="text-sm sm:text-base">Nơi sinh: <strong id="birthPlace" class="text-gray-800">Chưa nhập</strong></p>
+            </div>
+            <p class="text-sm sm:text-base">Địa chỉ liên lạc: <strong id="address" class="text-gray-800">Chưa nhập</strong></p>
+            <p class="text-sm sm:text-base">Là sinh viên khóa 26, ngành: <strong id="major" class="text-gray-800">Chưa nhập</strong></p>
+            <p class="text-sm sm:text-base">Điểm trung bình cả năm lớp 12: <strong id="averageScore" class="text-gray-800">Chưa tính</strong></p>
+        </div>
+        <div class="policy-section mt-4">
+            <p class="text-sm sm:text-base font-medium">Tôi thuộc diện miễn giảm học phí:</p>
+            <ul id="policyList" class="list-decimal pl-5 mt-2 space-y-1 text-sm text-gray-700">
+                <li data-policy="1"><input type="checkbox" id="policy1" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Giảm 50% học phí năm thứ nhất cho tân sinh viên hộ nghèo, cận nghèo (không áp dụng cho ngành Y khoa, Y học cổ truyền, Răng Hàm Mặt).</li>
+                <li data-policy="2"><input type="checkbox" id="policy2" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Giảm 50% học phí năm thứ nhất cho tân sinh viên mồ côi cha hoặc mồ côi mẹ (không áp dụng cho ngành Y khoa, Y học cổ truyền, Răng Hàm Mặt).</li>
+                <li data-policy="3"><input type="checkbox" id="policy3" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Giảm 40% học phí HK1 năm thứ nhất cho tân sinh viên là con của người có công với cách mạng, tân sinh viên có anh/chị đang là sinh viên của Trường ĐHCL, tân sinh viên là người dân tộc thiểu số, tân sinh viên là con ruột của CB, GV trường THPT, TTGDTX, Sở GD&ĐT các tỉnh, tân sinh viên là con, em, cháu ruột của CB, GV Trường ĐHCL (không áp dụng cho ngành Y khoa, Y học cổ truyền, Răng Hàm Mặt).</li>
+                <li data-policy="4"><input type="checkbox" id="policy4" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Giảm 20% học phí HK1 năm thứ nhất cho tân sinh viên là học sinh các trường THPT, TTGDTX ở Vĩnh Long. Riêng tân sinh viên là học sinh Trường THCS và THPT Phú Quới giảm 40% học phí HK1 năm thứ nhất (không áp dụng cho ngành Y khoa, Y học cổ truyền, Răng Hàm Mặt).</li>
+                <li data-policy="5"><input type="checkbox" id="policy5" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Giảm 20% học phí trọn khóa cho tân sinh viên học các ngành: Công tác xã hội, Kỹ thuật xây dựng công trình giao thông, Kỹ thuật y sinh, Kinh doanh thương mại, Hộ sinh, Kỹ thuật hình ảnh y học (áp dụng khi không đủ điều kiện các ưu tiên khác).</li>
+                <li data-policy="6"><input type="checkbox" id="policy6" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Miễn học phí HK1 năm nhất cho tân sinh viên có điểm trung bình học tập năm lớp 12 đạt từ 9,0 trở lên, riêng ngành Dược học giảm 50% học phí HK1 năm thứ nhất (không áp dụng cho ngành Y khoa, Y học cổ truyền, Răng Hàm Mặt).</li>
+                <li data-policy="7"><input type="checkbox" id="policy7" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Giảm 50% học phí HK1 năm nhất cho tân sinh viên có điểm trung bình học tập năm lớp 12 đạt từ 8,5 đến dưới 9,0, riêng ngành Dược học giảm 25% học phí HK1 năm thứ nhất (không áp dụng cho ngành Y khoa, Y học cổ truyền, Răng Hàm Mặt).</li>
+                <li data-policy="8"><input type="checkbox" id="policy8" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Giảm 25% học phí HK1 cho tân sinh viên có điểm trung bình học tập năm lớp 12 đạt từ 8,0 đến dưới 8,5 (không áp dụng cho ngành Dược học, Y khoa, Y học cổ truyền, Răng Hàm Mặt).</li>
+                <li data-policy="9"><input type="checkbox" id="policy9" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Miễn học phí toàn khóa học tân sinh viên người dân tộc Khmer theo giới thiệu của Ban Dân tộc các tỉnh: An Giang, Bạc Liêu, Hậu Giang, Kiên Giang, Sóc Trăng, Trà Vinh, Vĩnh Long (không áp dụng cho ngành Y khoa, Y học cổ truyền, Răng Hàm Mặt).</li>
+                <li data-policy="10"><input type="checkbox" id="policy10" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Tân sinh viên là con thương binh, con liệt sĩ được giảm 50% học phí học kỳ 1 năm thứ nhất.</li>
+            </ul>
+        </div>
+        <div class="attachment-section mt-4">
+            <p class="text-sm sm:text-base font-medium">Hồ sơ đính kèm (đánh dấu X vào các minh chứng cho đối tượng miễn giảm học phí):</p>
+            <ul class="list-decimal pl-5 mt-2 space-y-1 text-sm text-gray-700">
+                <li><input type="checkbox" id="attach1" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Bản sao Giấy khai sinh của tân sinh viên.</li>
+                <li><input type="checkbox" id="attach2" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Bản sao Giấy khai sinh của anh/chị/em ruột sinh viên.</li>
+                <li><input type="checkbox" id="attach3" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Giấy CMND/CCCD photo công chứng.</li>
+                <li><input type="checkbox" id="attach4" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Học bạ THPT photo công chứng.</li>
+                <li><input type="checkbox" id="attach5" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Hộ khẩu photo công chứng.</li>
+                <li><input type="checkbox" id="attach6" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Thẻ sinh viên của anh/chị/em tân sinh viên.</li>
+                <li><input type="checkbox" id="attach7" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Sổ Hộ nghèo photo công chứng / Sổ Hộ Cận nghèo photo công chứng.</li>
+                <li><input type="checkbox" id="attach8" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Các giấy tờ chứng minh cha hoặc mẹ của sinh viên là người có công với cách mạng.</li>
+                <li><input type="checkbox" id="attach9" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Các giấy tờ chứng minh cha hoặc mẹ của sinh viên đã qua đời.</li>
+                <li><input type="checkbox" id="attach10" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Giấy xác nhận của cán bộ, giáo viên Trường Đại học Cửu Long.</li>
+                <li><input type="checkbox" id="attach11" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Giấy xác nhận của Trường THPT, TTGDTX.</li>
+                <li><input type="checkbox" id="attach12" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Giấy báo nhập học.</li>
+                <li><input type="checkbox" id="attach13" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Biên lai thu tiền học phí.</li>
+                <li><input type="checkbox" id="attach14" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" disabled> Quyết định/Công văn giới thiệu của Ban Dân tộc tỉnh.</li>
+            </ul>
+        </div>
+        <p class="mt-4 text-sm sm:text-base">Nay tôi làm Đơn này kính đề nghị Nhà trường xem xét cho tôi được nhận tiền miễn giảm học phí dành cho tân sinh viên năm 2025, khóa 26, theo chế độ chính sách của Trường.</p>
+        <p class="text-sm sm:text-base">Rất mong sự xem xét chấp thuận của quý Thầy/Cô.</p>
+        <p class="text-sm sm:text-base">Trân trọng./.</p>
+        <div class="signature-section mt-6 flex justify-between">
+            <div class="w-1/2 text-center">
+                <p class="text-sm sm:text-base font-medium">Ý KIẾN TRUNG TÂM TUYỂN SINH</p>
+                <p class="text-sm sm:text-base mt-2" id="selectedPolicy"></p>
+                <div class="h-20"></div>
+            </div>
+            <div class="w-1/2 text-center">
+                <p class="text-sm sm:text-base">Vĩnh Long, ngày <span id="currentDate"></span></p>
+                <p class="text-sm sm:text-base font-medium">NGƯỜI LÀM ĐƠN</p>
+                <p class="text-sm sm:text-base mt-2">(Ký và ghi rõ họ tên)</p>
+                <div class="h-20"></div>
+            </div>
+        </div>
+    </div>
+    <div class="no-print mt-4 flex flex-col sm:flex-row gap-3 justify-center w-full max-w-3xl mx-auto">
+        <button onclick="window.print()" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-base sm:text-lg font-semibold">In Đơn</button>
+        <button onclick="window.location.href='index.html'" class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors text-base sm:text-lg font-semibold">Quay Lại Trang Tính Điểm</button>
+    </div>
+    <p class="no-print mt-4 text-red-600 text-center text-base sm:text-lg font-semibold" id="errorMessage" style="display: none;">Lỗi: Không tìm thấy dữ liệu. Vui lòng quay lại trang tính điểm!</p>
+
+    <script>
+        window.onload = function() {
+            const data = JSON.parse(localStorage.getItem('applicationData') || '{}');
+            const formContainer = document.querySelector('.form-container');
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (!data.fullName || !data.averageScore || !data.selectedPolicyId) {
+                formContainer.style.display = 'none';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            document.getElementById('fullName').innerText = data.fullName || 'Chưa nhập';
+            document.getElementById('dob').innerText = data.dob ? new Date(data.dob).toLocaleDateString('vi-VN') : 'Chưa nhập';
+            document.getElementById('birthPlace').innerText = data.birthPlace || 'Chưa nhập';
+            document.getElementById('address').innerText = data.address || 'Chưa nhập';
+            document.getElementById('phone').innerText = data.phone || 'Chưa nhập';
+            document.getElementById('major').innerText = data.major || 'Chưa nhập';
+            document.getElementById('averageScore').innerText = data.averageScore || 'Chưa tính';
+            document.getElementById('currentDate').innerText = new Date().toLocaleDateString('vi-VN');
+            document.getElementById('selectedPolicy').innerText = data.discountMessage || 'Chưa chọn';
+
+            // Check và highlight chính sách được chọn
+            const selectedPolicyId = data.selectedPolicyId;
+            if (selectedPolicyId) {
+                const policyCheckbox = document.getElementById(`policy${selectedPolicyId}`);
+                if (policyCheckbox) {
+                    policyCheckbox.checked = true;
+                    const policyLi = policyCheckbox.parentElement;
+                    policyLi.classList.add('highlight');
+                    policyLi.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            }
+
+            // Tự động check hồ sơ đính kèm dựa trên chính sách
+            const attachments = {
+                '1': ['attach1', 'attach3', 'attach4', 'attach5', 'attach7', 'attach12'],
+                '2': ['attach1', 'attach3', 'attach4', 'attach5', 'attach9', 'attach12'],
+                '3': ['attach1', 'attach3', 'attach4', 'attach5', 'attach6', 'attach8', 'attach10', 'attach12'],
+                '4': ['attach1', 'attach3', 'attach4', 'attach5', 'attach11', 'attach12'],
+                '5': ['attach1', 'attach3', 'attach4', 'attach5', 'attach12'],
+                '6': ['attach1', 'attach3', 'attach4', 'attach5', 'attach12'],
+                '7': ['attach1', 'attach3', 'attach4', 'attach5', 'attach12'],
+                '8': ['attach1', 'attach3', 'attach4', 'attach5', 'attach12'],
+                '9': ['attach1', 'attach3', 'attach4', 'attach5', 'attach12', 'attach14'],
+                '10': ['attach1', 'attach3', 'attach4', 'attach5', 'attach8', 'attach12']
+            };
+
+            if (selectedPolicyId && attachments[selectedPolicyId]) {
+                attachments[selectedPolicyId].forEach(id => {
+                    const checkbox = document.getElementById(id);
+                    if (checkbox) checkbox.checked = true;
+                });
+            }
+        };
+    </script>
+</body>
+</html>
